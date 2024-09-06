@@ -9,20 +9,15 @@
     min-height: 100vh;
     padding: 20px;
     font-family: Arial, sans-serif;
+    box-sizing: border-box; /* Ensures padding is included in width and height */
 }
 
 /* Header styling */
 .todo-app h1 {
     color: #333;
     margin-bottom: 20px;
-}
-
-/* Instructional message styling */
-.instruction {
-    color: #555;
-    margin-bottom: 10px;
-    font-size: 16px;
-    font-weight: bold;
+    text-align: center;
+    font-size: 1.5em; /* Font size scales better for smaller screens */
 }
 
 /* Form styling */
@@ -30,6 +25,8 @@
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap; /* Allows input and button to wrap on smaller screens */
+    justify-content: center;
 }
 
 /* Input field styling */
@@ -37,8 +34,10 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px; /* Sets max width to ensure input doesn't overflow */
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 /* Button styling */
@@ -51,6 +50,8 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 150px; /* Prevents the button from getting too large */
 }
 
 .todo-app button:hover {
@@ -62,6 +63,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
+    max-width: 350px; /* Keeps task list centered on smaller screens */
 }
 
 /* Task item styling */
@@ -75,6 +78,7 @@
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
+    flex-wrap: wrap; /* Allows button to wrap on smaller screens */
 }
 
 /* Task item hover effect */
@@ -86,39 +90,14 @@
 .todo-item.completed {
     text-decoration: line-through;
     color: #888;
-    background-color: #e0ffe0; /* Light green background for completed tasks */
-    border-color: #b2ffb2; /* Light green border */
+    background-color: #e0ffe0;
+    border-color: #b2ffb2;
 }
 
 /* Task text styling */
 .todo-item span {
     flex: 1;
     font-size: 16px;
-    position: relative;
-    cursor: pointer;
-}
-
-/* Tooltip styling */
-.todo-item span::after {
-    content: "Click to mark as completed";
-    position: absolute;
-    left: 50%;
-    bottom: 100%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 3px;
-    white-space: nowrap;
-    font-size: 12px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s;
-}
-
-.todo-item span:hover::after {
-    opacity: 1;
-    visibility: visible;
 }
 
 /* Delete button styling */
@@ -134,4 +113,24 @@
 
 .todo-item button:hover {
     background-color: #c82333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .todo-app input[type="text"] {
+        max-width: 100%; /* Allows input to fill the available space */
+    }
+    
+    .todo-app button {
+        max-width: 100%; /* Button takes full width on smaller screens */
+    }
+
+    .todo-item {
+        flex-direction: column; /* Stacks content vertically on smaller screens */
+        align-items: stretch;
+    }
+    
+    .todo-item button {
+        margin-top: 10px; /* Adds some space between task text and delete button */
+    }
 }
